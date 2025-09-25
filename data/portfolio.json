@@ -1,0 +1,217 @@
+{
+  "avatar": {
+    "id": "avatar",
+    "type": "avatar",
+    "image": "https://picsum.photos/400/400?random=999",
+    "title": "Nguyen Van A",
+    "description": "Full-Stack Developer chuyên React, Node.js & Cloud Solutions",
+    "span": "span-2x2",
+    "location": "Ho Chi Minh City, Vietnam",
+    "role": "Senior Full-Stack Developer"
+  },
+  "skills": {
+    "id": "2",
+    "type": "skills",
+    "icon": "MdStar",
+    "title": "Skills & Expertise",
+    "description": "Technical skills and competencies.",
+    "span": "span-2x2",
+    "skills": [
+      {
+        "name": "JavaScript/TypeScript",
+        "level": 95,
+        "color": "bg-yellow-500",
+        "description": "Frontend & Backend development với ES6+, Node.js, TypeScript.",
+        "icon": "SiJavascript"
+      },
+      {
+        "name": "React/Next.js",
+        "level": 92,
+        "color": "bg-blue-500",
+        "description": "Modern web development với React ecosystem, SSR, SSG.",
+        "icon": "SiReact"
+      },
+      {
+        "name": "Python",
+        "level": 88,
+        "color": "bg-green-500",
+        "description": "Backend services, data processing, AI/ML applications.",
+        "icon": "SiPython"
+      },
+      {
+        "name": "React Native",
+        "level": 85,
+        "color": "bg-cyan-500",
+        "description": "Cross-platform mobile apps cho iOS và Android.",
+        "icon": "SiReact"
+      },
+      {
+        "name": "Node.js/Express",
+        "level": 90,
+        "color": "bg-green-600",
+        "description": "RESTful APIs, microservices, real-time applications.",
+        "icon": "SiNodedotjs"
+      },
+      {
+        "name": "Database (SQL/NoSQL)",
+        "level": 87,
+        "color": "bg-purple-500",
+        "description": "PostgreSQL, MongoDB, Redis, database design & optimization.",
+        "icon": "SiMongodb"
+      },
+      {
+        "name": "Cloud & DevOps",
+        "level": 82,
+        "color": "bg-orange-500",
+        "description": "AWS, Docker, CI/CD, infrastructure as code.",
+        "icon": "SiAmazon"
+      }
+    ]
+  },
+  "contactForm": {
+    "id": "3",
+    "type": "contact-form",
+    "icon": "MdMail",
+    "title": "Get In Touch",
+    "description": "Send me a message",
+    "span": "col-span-1 row-span-1",
+    "email": "nguyenvana.dev@gmail.com"
+  },
+  "projects": [
+    {
+      "id": "4",
+      "type": "project",
+      "images": [
+        "https://picsum.photos/400/300?random=2",
+        "https://picsum.photos/400/300?random=20",
+        "https://picsum.photos/400/300?random=21"
+      ],
+      "icon": "MdSmartphone",
+      "title": "E-commerce Mobile App",
+      "description": "React Native app với payment integration, real-time inventory.",
+      "span": "span-1x1",
+      "tags": ["React Native", "Node.js", "MongoDB"]
+    },
+    {
+      "id": "5",
+      "type": "project",
+      "images": [
+        "https://picsum.photos/400/300?random=3",
+        "https://picsum.photos/400/300?random=30",
+        "https://picsum.photos/400/300?random=31"
+      ],
+      "icon": "MdCloud",
+      "title": "SaaS Dashboard",
+      "description": "Full-stack web app với analytics, user management, API.",
+      "span": "span-1x1",
+      "tags": ["Next.js", "TypeScript", "PostgreSQL"]
+    },
+    {
+      "id": "6",
+      "type": "project",
+      "images": [
+        "https://picsum.photos/400/300?random=4",
+        "https://picsum.photos/400/300?random=40",
+        "https://picsum.photos/400/300?random=41"
+      ],
+      "icon": "MdPalette",
+      "title": "Real-time Chat Platform",
+      "description": "WebSocket-based chat app với file sharing, encryption.",
+      "span": "span-1x1",
+      "tags": ["React", "Socket.io", "Express"]
+    },
+    {
+      "id": "7",
+      "type": "project",
+      "images": [
+        "https://picsum.photos/400/300?random=5",
+        "https://picsum.photos/400/300?random=50",
+        "https://picsum.photos/400/300?random=51"
+      ],
+      "icon": "MdBarChart",
+      "title": "Data Visualization Tool",
+      "description": "Python-based analytics platform với interactive charts.",
+      "span": "span-1x1",
+      "tags": ["Python", "D3.js", "Flask"]
+    }
+  ],
+  "socialMedia": {
+    "github": {
+      "link": "https://github.com/tahiru0"
+    },
+    "linkedin": {
+      "id": "9",
+      "type": "contact",
+      "icon": "SiLinkedin",
+      "title": "LinkedIn",
+      "description": "Professional network and connections.",
+      "span": "col-span-1 row-span-1",
+      "username": "Nguyen Van A",
+      "followers": "500+",
+      "avatar": "https://picsum.photos/100/100?random=123",
+      "theme": "linkedin",
+      "link": "https://linkedin.com/in/nguyenvana"
+    },
+    "twitter": {
+      "id": "10",
+      "type": "contact",
+      "icon": "SiX",
+      "title": "X",
+      "description": "Follow for tech updates and insights.",
+      "span": "col-span-1 row-span-1",
+      "username": "@BnhTrnNgc8",
+      "followers": "1K+",
+      "avatar": "https://picsum.photos/100/100?random=456",
+      "theme": "twitter",
+      "link": "https://x.com/BnhTrnNgc8"
+    }
+  },
+  "certifications": {
+    "id": "11",
+    "type": "certifications",
+    "icon": "MdEmojiEvents",
+    "title": "Certifications",
+    "description": "Professional certifications and achievements.",
+    "span": "col-span-1 row-span-1",
+    "certifications": [
+      "AWS Certified Developer",
+      "Google Cloud Professional",
+      "React Developer Certification",
+      "MongoDB Certified Developer"
+    ]
+  },
+  "timeline": {
+    "id": "12",
+    "type": "timeline",
+    "icon": "MdCalendarToday",
+    "title": "Project Timeline",
+    "description": "Timeline of major projects and milestones.",
+    "span": "col-span-2 row-span-2",
+    "events": [
+      {
+        "year": "2024",
+        "event": "Senior Full-Stack Developer tại TechCorp - Led team phát triển microservices"
+      },
+      {
+        "year": "2023",
+        "event": "React Native Developer - Xây dựng 3 mobile apps với 100K+ downloads"
+      },
+      {
+        "year": "2022",
+        "event": "Full-Stack Developer - Phát triển SaaS platform với 500+ users"
+      },
+      {
+        "year": "2021",
+        "event": "Frontend Developer - Chuyển đổi legacy systems sang React/Next.js"
+      }
+    ]
+  },
+  "map": {
+    "id": "13",
+    "type": "map",
+    "title": "Location",
+    "description": "Available for remote work worldwide.",
+    "span": "span-2x2",
+    "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.8444586992264!2d105.83415957501678!2d10.76262243973705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab0d6e603741%3A0x1d1a1b85e1b7a8c1!2zVHLGsOG7nW5nIENhbyDEkeG6s25nIE5naOG7hyBUaMO0bmcgVGnhu4E!5e0!3m2!1svi!2s!4v1634567890123!5m2!1svi!2s"
+  }
+}
