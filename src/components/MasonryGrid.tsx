@@ -25,7 +25,6 @@ interface PortfolioItem {
   icon?: IconType;
   title: string;
   description: string;
-  span: string;
   image?: string;
   images?: string[];
   tags?: string[];
@@ -57,6 +56,8 @@ interface PortfolioItem {
   textColor?: string;
   iconColor?: string;
   avatar?: string;
+  liveUrl?: string;
+  sourceUrl?: string;
 }
 
 interface MasonryGridProps {
@@ -224,6 +225,17 @@ export default function MasonryGrid({ items }: MasonryGridProps) {
         const images = item.images || (item.image ? [item.image] : []);
         const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+        // Auto slideshow
+        useEffect(() => {
+          if (images.length <= 1) return;
+
+          const interval = setInterval(() => {
+            setCurrentImageIndex((prev) => (prev + 1) % images.length);
+          }, 3000); // Change image every 3 seconds
+
+          return () => clearInterval(interval);
+        }, [images.length]);
+
         const nextImage = (e: React.MouseEvent) => {
           e.stopPropagation();
           setCurrentImageIndex((prev) => (prev + 1) % images.length);
@@ -236,30 +248,37 @@ export default function MasonryGrid({ items }: MasonryGridProps) {
 
         const handleCardClick = (e: React.MouseEvent) => {
           // Only open link if not clicking on navigation elements
-          if (!e.target || !(e.target as HTMLElement).closest('.carousel-nav, .carousel-dots')) {
-            if (item.link) {
-              window.open(item.link, '_blank');
+          if (!e.target || !(e.target as HTMLElement).closest('.carousel-nav, .carousel-dots, .action-buttons')) {
+            if (item.liveUrl) {
+              window.open(item.liveUrl, '_blank');
             }
           }
         };
 
         return (
-          <div className="relative h-full min-h-[200px] group cursor-pointer overflow-hidden" onClick={handleCardClick}>
+          <div className="relative h-full min-h-[200px] group cursor-pointer overflow-hidden hover:scale-105 transition-all duration-500 hover:z-10 hover:shadow-2xl" onClick={handleCardClick}>
             {/* Main Image */}
             {images.length > 0 && (
               <Image
                 src={images[currentImageIndex]}
                 alt={item.title}
                 fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                className="object-cover transition-all duration-700 group-hover:scale-110"
               />
+            )}
+
+            {/* Auto slideshow indicator */}
+            {images.length > 1 && (
+              <div className="absolute top-4 right-4 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded-full">
+                {currentImageIndex + 1}/{images.length}
+              </div>
             )}
 
             {/* Navigation Arrows with gradient background */}
             {images.length > 1 && (
               <>
                 {/* Left gradient and arrow */}
-                <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-black via-black/50 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-start pl-2 z-50">
+                <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-start pl-2 z-50">
                   <button
                     onClick={prevImage}
                     className="carousel-nav text-white text-2xl hover:text-yellow-300 transition-colors duration-200 hover:scale-110"
@@ -269,7 +288,7 @@ export default function MasonryGrid({ items }: MasonryGridProps) {
                 </div>
 
                 {/* Right gradient and arrow */}
-                <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-black via-black/50 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-end pr-2 z-50">
+                <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-end pr-2 z-50">
                   <button
                     onClick={nextImage}
                     className="carousel-nav text-white text-2xl hover:text-yellow-300 transition-colors duration-200 hover:scale-110"
@@ -298,16 +317,42 @@ export default function MasonryGrid({ items }: MasonryGridProps) {
               </div>
             )}
 
+            {/* Action Buttons */}
+            <div className="action-buttons absolute top-4 left-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50">
+              {item.liveUrl && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.open(item.liveUrl, '_blank');
+                  }}
+                  className="bg-blue-500 hover:bg-blue-600 text-white text-sm px-3 py-1 rounded-full transition-colors duration-200 hover:scale-105"
+                >
+                  See Live
+                </button>
+              )}
+              {item.sourceUrl && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.open(item.sourceUrl, '_blank');
+                  }}
+                  className="bg-gray-800 hover:bg-gray-900 text-white text-sm px-3 py-1 rounded-full transition-colors duration-200 hover:scale-105"
+                >
+                  Source Code
+                </button>
+              )}
+            </div>
+
             {/* Remove overlay completely - no dark overlay on hover */}
 
             {/* Content */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black via-black/70 to-transparent transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
               <h3 className="font-semibold text-lg mb-2 text-white group-hover:text-yellow-300 transition-colors">{item.title}</h3>
-              <p className="text-gray-200 text-sm mb-2 group-hover:text-white transition-colors">{item.description}</p>
+              <p className="text-gray-200 text-sm mb-3 group-hover:text-white transition-colors">{item.description}</p>
               {item.tags && (
                 <div className="flex flex-wrap gap-1">
                   {item.tags.map((tag, index) => (
-                    <span key={index} className="bg-black bg-opacity-70 text-white text-xs px-2 py-1 hover:bg-opacity-90 transition-all duration-200">
+                    <span key={index} className="bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded hover:bg-opacity-90 transition-all duration-200 hover:scale-105">
                       {tag}
                     </span>
                   ))}
@@ -628,7 +673,7 @@ export default function MasonryGrid({ items }: MasonryGridProps) {
         {items.map((item) => (
           <div
             key={item.id}
-            className={`item bg-white border border-gray-800 overflow-hidden hover:shadow-lg transition-shadow duration-300 ${item.span || 'span-1x1'}`}
+            className="item bg-white border border-gray-800 overflow-hidden hover:shadow-lg transition-shadow duration-300"
           >
             {renderItemContent(item)}
           </div>

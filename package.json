@@ -1,5 +1,5 @@
 {
-  "name": "portfolio",
+  "name": "masonry-portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "lucide-react": "^0.544.0",
     "muuri": "^0.9.5",
     "muuri-react": "^3.1.7",
     "next": "15.5.4",
