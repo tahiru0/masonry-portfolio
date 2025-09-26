@@ -9,7 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "lucide-react": "^0.544.0",
     "muuri": "^0.9.5",
     "muuri-react": "^3.1.7",
     "next": "15.5.4",
