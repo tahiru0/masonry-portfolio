@@ -3,11 +3,10 @@
     "id": "avatar",
     "type": "avatar",
     "image": "https://picsum.photos/400/400?random=999",
-    "title": "Nguyen Van A",
-    "description": "Full-Stack Developer chuyên React, Node.js & Cloud Solutions",
-    "span": "span-2x2",
-    "location": "Ho Chi Minh City, Vietnam",
-    "role": "Senior Full-Stack Developer"
+    "title": "Your Name",
+    "description": "Sample description - Lorem ipsum dolor sit amet",
+    "location": "Sample City, Country",
+    "role": "Sample Role"
   },
   "skills": {
     "id": "2",
@@ -15,7 +14,6 @@
     "icon": "MdStar",
     "title": "Skills & Expertise",
     "description": "Technical skills and competencies.",
-    "span": "span-2x2",
     "skills": [
       {
         "name": "JavaScript/TypeScript",
@@ -74,8 +72,7 @@
     "icon": "MdMail",
     "title": "Get In Touch",
     "description": "Send me a message",
-    "span": "col-span-1 row-span-1",
-    "email": "nguyenvana.dev@gmail.com"
+    "email": "sample@email.com"
   },
   "projects": [
     {
@@ -87,10 +84,11 @@
         "https://picsum.photos/400/300?random=21"
       ],
       "icon": "MdSmartphone",
-      "title": "E-commerce Mobile App",
-      "description": "React Native app với payment integration, real-time inventory.",
-      "span": "span-1x1",
-      "tags": ["React Native", "Node.js", "MongoDB"]
+      "title": "Project 1",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "tags": ["React Native", "Node.js", "MongoDB"],
+      "liveUrl": "https://demo-ecommerce-app.vercel.app",
+      "sourceUrl": "https://github.com/username/ecommerce-mobile-app"
     },
     {
       "id": "5",
@@ -101,10 +99,11 @@
         "https://picsum.photos/400/300?random=31"
       ],
       "icon": "MdCloud",
-      "title": "SaaS Dashboard",
-      "description": "Full-stack web app với analytics, user management, API.",
-      "span": "span-1x1",
-      "tags": ["Next.js", "TypeScript", "PostgreSQL"]
+      "title": "Project 2",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "tags": ["Next.js", "TypeScript", "PostgreSQL"],
+      "liveUrl": "https://saas-dashboard-demo.vercel.app",
+      "sourceUrl": "https://github.com/username/saas-dashboard"
     },
     {
       "id": "6",
@@ -115,10 +114,11 @@
         "https://picsum.photos/400/300?random=41"
       ],
       "icon": "MdPalette",
-      "title": "Real-time Chat Platform",
-      "description": "WebSocket-based chat app với file sharing, encryption.",
-      "span": "span-1x1",
-      "tags": ["React", "Socket.io", "Express"]
+      "title": "Project 3",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "tags": ["React", "Socket.io", "Express"],
+      "liveUrl": "https://chat-platform-demo.vercel.app",
+      "sourceUrl": "https://github.com/username/realtime-chat"
     },
     {
       "id": "7",
@@ -129,9 +129,8 @@
         "https://picsum.photos/400/300?random=51"
       ],
       "icon": "MdBarChart",
-      "title": "Data Visualization Tool",
-      "description": "Python-based analytics platform với interactive charts.",
-      "span": "span-1x1",
+      "title": "Project 4",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "tags": ["Python", "D3.js", "Flask"]
     }
   ],
@@ -145,12 +144,11 @@
       "icon": "SiLinkedin",
       "title": "LinkedIn",
       "description": "Professional network and connections.",
-      "span": "col-span-1 row-span-1",
-      "username": "Nguyen Van A",
+      "username": "Sample User",
       "followers": "500+",
       "avatar": "https://picsum.photos/100/100?random=123",
       "theme": "linkedin",
-      "link": "https://linkedin.com/in/nguyenvana"
+      "link": "https://linkedin.com/in/sampleuser"
     },
     "twitter": {
       "id": "10",
@@ -158,12 +156,11 @@
       "icon": "SiX",
       "title": "X",
       "description": "Follow for tech updates and insights.",
-      "span": "col-span-1 row-span-1",
-      "username": "@BnhTrnNgc8",
+      "username": "@sample",
       "followers": "1K+",
       "avatar": "https://picsum.photos/100/100?random=456",
       "theme": "twitter",
-      "link": "https://x.com/BnhTrnNgc8"
+      "link": "https://x.com/sampleuser"
     }
   },
   "certifications": {
@@ -172,37 +169,35 @@
     "icon": "MdEmojiEvents",
     "title": "Certifications",
     "description": "Professional certifications and achievements.",
-    "span": "col-span-1 row-span-1",
     "certifications": [
-      "AWS Certified Developer",
-      "Google Cloud Professional",
-      "React Developer Certification",
-      "MongoDB Certified Developer"
+      "Sample Certification 1",
+      "Sample Certification 2",
+      "Sample Certification 3",
+      "Sample Certification 4"
     ]
   },
   "timeline": {
     "id": "12",
     "type": "timeline",
     "icon": "MdCalendarToday",
-    "title": "Project Timeline",
-    "description": "Timeline of major projects and milestones.",
-    "span": "col-span-2 row-span-2",
+    "title": "Timeline",
+    "description": "Sample timeline description.",
     "events": [
       {
         "year": "2024",
-        "event": "Senior Full-Stack Developer tại TechCorp - Led team phát triển microservices"
+        "event": "Sample event 1 - Lorem ipsum dolor sit amet"
       },
       {
         "year": "2023",
-        "event": "React Native Developer - Xây dựng 3 mobile apps với 100K+ downloads"
+        "event": "Sample event 2 - Consectetur adipiscing elit"
       },
       {
         "year": "2022",
-        "event": "Full-Stack Developer - Phát triển SaaS platform với 500+ users"
+        "event": "Sample event 3 - Sed do eiusmod tempor incididunt"
       },
       {
         "year": "2021",
-        "event": "Frontend Developer - Chuyển đổi legacy systems sang React/Next.js"
+        "event": "Sample event 4 - Ut labore et dolore magna aliqua"
       }
     ]
   },
@@ -210,8 +205,7 @@
     "id": "13",
     "type": "map",
     "title": "Location",
-    "description": "Available for remote work worldwide.",
-    "span": "span-2x2",
+    "description": "Sample location description.",
     "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.8444586992264!2d105.83415957501678!2d10.76262243973705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab0d6e603741%3A0x1d1a1b85e1b7a8c1!2zVHLGsOG7nW5nIENhbyDEkeG6s25nIE5naOG7hyBUaMO0bmcgVGnhu4E!5e0!3m2!1svi!2s!4v1634567890123!5m2!1svi!2s"
   }
 }

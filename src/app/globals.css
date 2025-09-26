@@ -49,13 +49,6 @@
   z-index: 0;
 }
 
-/* Different sizes */
-.item.span-1x1 { width: 270px; height: 200px; }
-.item.span-2x1 { width: 560px; height: 200px; }
-.item.span-1x2 { width: 270px; height: 410px; }
-.item.span-2x2 { width: 560px; height: 410px; }
-.item.span-3x1 { width: 850px; height: 200px; }
-.item.span-3x2 { width: 850px; height: 410px; }
 
 /* Responsive - simplified */
 /* Responsive */
