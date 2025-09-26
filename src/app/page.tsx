@@ -1,10 +1,11 @@
 'use client';
 
 import MasonryGrid from '../components/MasonryGrid';
-import { MdCode, MdPalette, MdPublic, MdSmartphone, MdStorage, MdCloud, MdSecurity, MdFlashOn, MdPeople, MdBarChart, MdMenuBook, MdEmojiEvents, MdMail, MdStar, MdCalendarToday, MdLocationOn, MdCodeOff, MdDns, MdPhoneAndroid, MdComputer, MdDataUsage, MdCloudQueue } from 'react-icons/md';
+import { MdCode, MdSmartphone, MdStorage, MdCloud, MdEmojiEvents, MdMail, MdStar, MdCalendarToday, MdLocationOn, MdDns, MdComputer } from 'react-icons/md';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 import { SiX } from 'react-icons/si';
 import { useState, useEffect } from 'react';
+import { IconType } from 'react-icons';
 import portfolioData from '../../data/portfolio.json';
 
 interface GitHubUser {
@@ -21,9 +22,51 @@ interface GitHubUser {
   html_url: string;
 }
 
+interface PortfolioItem {
+  id: string;
+  type: string;
+  icon?: IconType;
+  title: string;
+  description: string;
+  image?: string;
+  images?: string[];
+  tags?: string[];
+  level?: number;
+  color?: string;
+  email?: string;
+  availability?: string;
+  certifications?: string[];
+  username?: string;
+  followers?: string;
+  repos?: string;
+  client?: string;
+  rating?: number;
+  stats?: { label: string; value: string }[];
+  events?: { year: string; event: string }[];
+  location?: string;
+  timezone?: string;
+  languages?: string[];
+  date?: string;
+  readTime?: string;
+  link?: string;
+  skills?: { name: string; level: number; color: string; description: string; icon?: IconType }[];
+  role?: string;
+  embedUrl?: string;
+  theme?: string;
+  backgroundColor?: string;
+  hoverColor?: string;
+  borderColor?: string;
+  textColor?: string;
+  iconColor?: string;
+  avatar?: string;
+  liveUrl?: string;
+  sourceUrl?: string;
+  span?: string;
+}
+
 // Function to convert icon string to component
-const getIconComponent = (iconName: string) => {
-  const iconMap: { [key: string]: any } = {
+const getIconComponent = (iconName: string): IconType | undefined => {
+  const iconMap: Record<string, IconType> = {
     MdStar, MdCode, MdComputer, MdSmartphone, MdDns, MdStorage, MdCloud,
     MdEmojiEvents, MdMail, MdCalendarToday, MdLocationOn,
     SiGithub, SiLinkedin, SiX
@@ -32,7 +75,7 @@ const getIconComponent = (iconName: string) => {
 };
 
 // Function to convert skill icon strings to components
-const processSkills = (skills: any[]) => {
+const processSkills = (skills: { name: string; level: number; color: string; description: string; icon: string }[]): PortfolioItem['skills'] => {
   return skills.map(skill => ({
     ...skill,
     icon: getIconComponent(skill.icon)
@@ -40,7 +83,7 @@ const processSkills = (skills: any[]) => {
 };
 
 export default function Home() {
-  const [items, setItems] = useState<any[]>([]);
+  const [items, setItems] = useState<PortfolioItem[]>([]);
   const [githubData, setGithubData] = useState<GitHubUser | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -64,7 +107,7 @@ export default function Home() {
   // Set items after GitHub data is loaded
   useEffect(() => {
     if (githubData) {
-      const finalItems: any[] = [
+      const finalItems: PortfolioItem[] = [
         // Avatar
         {
           ...portfolioData.avatar,

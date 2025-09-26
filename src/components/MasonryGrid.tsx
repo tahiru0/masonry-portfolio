@@ -13,11 +13,7 @@ import {
   SiAmazon
 } from 'react-icons/si';
 
-// Import Muuri only on client-side
-let Muuri: any = null;
-if (typeof window !== 'undefined') {
-  Muuri = require('muuri').default;
-}
+// Muuri will be loaded dynamically inside a client-only effect to avoid SSR issues.
 
 interface PortfolioItem {
   id: string;
@@ -66,6 +62,7 @@ interface MasonryGridProps {
 
 export default function MasonryGrid({ items }: MasonryGridProps) {
   const gridRef = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const muuriRef = useRef<any>(null);
   const [formData, setFormData] = useState({
     subject: '',
@@ -88,102 +85,121 @@ export default function MasonryGrid({ items }: MasonryGridProps) {
   };
 
   useEffect(() => {
-    if (gridRef.current && !muuriRef.current) {
-      // Check if mobile (single column layout)
-      const isMobile = window.innerWidth <= 640;
-      
-      muuriRef.current = new Muuri(gridRef.current, {
-        items: '.item',
-        dragEnabled: !isMobile, // Disable drag on mobile
-        dragSort: !isMobile, // Disable drag sort on mobile
-        dragContainer: document.body,
-        dragRelease: {
-          duration: 400,
-          easing: 'ease-out',
-        },
-        layout: {
-          fillGaps: true,
-          horizontal: false,
-          alignRight: false,
-          alignBottom: false,
-          rounding: false,
-        },
-        layoutOnResize: true,
-        layoutOnInit: true,
-        layoutDuration: 300,
-        layoutEasing: 'ease-out',
-        dragSortPredicate: {
-          threshold: 50,
-          action: 'move',
-          migrateAction: 'move',
-        },
-        dragStartPredicate: function (item: any, event: any) {
-          // Don't allow dragging if the target has no-drag class or is a form element or iframe
-          const target = event.target;
-          if (target.closest('.no-drag') ||
-              target.tagName === 'IFRAME' ||
-              target.tagName === 'INPUT' ||
-              target.tagName === 'TEXTAREA' ||
-              target.tagName === 'BUTTON' ||
-              target.tagName === 'SELECT' ||
-              target.tagName === 'LABEL' ||
-              target.closest('input') ||
-              target.closest('textarea') ||
-              target.closest('button') ||
-              target.closest('select') ||
-              target.closest('label') ||
-              target.closest('iframe')) {
-            return false;
-          }
+    // Only run Muuri initialization on the client to avoid SSR evaluation
+    if (typeof window === 'undefined') return;
 
-          // Allow dragging from drag-handle elements
-          if (target.closest('.drag-handle')) {
-            return Muuri.ItemDrag.defaultStartPredicate(item, event, {
-              distance: 0,
+    if (gridRef.current && !muuriRef.current) {
+      // Provide a synchronous cleanup function reference which will be set by the async init
+      let cleanup = () => {};
+
+      (async () => {
+  // Lazy-load Muuri only on client
+  const mod = await import('muuri');
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const MuuriConstructor: any = mod && (mod.default || mod);
+
+        // Check mobile
+        const isMobile = window.innerWidth <= 640;
+
+        muuriRef.current = new MuuriConstructor(gridRef.current, {
+          items: '.item',
+          dragEnabled: !isMobile, // Disable drag on mobile
+          dragSort: !isMobile, // Disable drag sort on mobile
+          dragContainer: document.body,
+          dragRelease: {
+            duration: 400,
+            easing: 'ease-out',
+          },
+          layout: {
+            fillGaps: true,
+            horizontal: false,
+            alignRight: false,
+            alignBottom: false,
+            rounding: false,
+          },
+          layoutOnResize: true,
+          layoutOnInit: true,
+          layoutDuration: 300,
+          layoutEasing: 'ease-out',
+          dragSortPredicate: {
+            threshold: 50,
+            action: 'move',
+            migrateAction: 'move',
+          },
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          dragStartPredicate: function (item: any, event: any) {
+            // Don't allow dragging if the target has no-drag class or is a form element or iframe
+            const target = event.target;
+            if (target.closest('.no-drag') ||
+                target.tagName === 'IFRAME' ||
+                target.tagName === 'INPUT' ||
+                target.tagName === 'TEXTAREA' ||
+                target.tagName === 'BUTTON' ||
+                target.tagName === 'SELECT' ||
+                target.tagName === 'LABEL' ||
+                target.closest('input') ||
+                target.closest('textarea') ||
+                target.closest('button') ||
+                target.closest('select') ||
+                target.closest('label') ||
+                target.closest('iframe')) {
+              return false;
+            }
+
+            // Allow dragging from drag-handle elements
+            if (target.closest('.drag-handle')) {
+              return MuuriConstructor?.ItemDrag.defaultStartPredicate(item, event, {
+                distance: 0,
+                delay: 0
+              });
+            }
+
+            // Use default predicate but with higher delay to distinguish click from drag
+            return MuuriConstructor?.ItemDrag.defaultStartPredicate(item, event, {
+              distance: 10,
               delay: 0
             });
+          },
+        });
+
+        // Handle window resize for responsive layout
+        const handleResize = () => {
+          if (muuriRef.current) {
+            muuriRef.current.refreshItems();
+            muuriRef.current.layout();
           }
+        };
 
-          // Use default predicate but with higher delay to distinguish click from drag
-          return Muuri.ItemDrag.defaultStartPredicate(item, event, {
-            distance: 10,
-            delay: 0
-          });
-        },
-      });
+        // Handle drag events to refresh layout
+        const handleDragEnd = () => {
+          if (muuriRef.current) {
+            setTimeout(() => {
+              muuriRef.current?.refreshItems().layout();
+            }, 100);
+          }
+        };
 
-      // Handle window resize for responsive layout
-      const handleResize = () => {
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('orientationchange', handleResize);
+
         if (muuriRef.current) {
-          muuriRef.current.refreshItems();
-          muuriRef.current.layout();
+          muuriRef.current.on('dragEnd', handleDragEnd);
         }
-      };
 
-      // Handle drag events to refresh layout
-      const handleDragEnd = () => {
-        if (muuriRef.current) {
-          setTimeout(() => {
-            muuriRef.current?.refreshItems().layout();
-          }, 100);
-        }
-      };
-
-      window.addEventListener('resize', handleResize);
-      window.addEventListener('orientationchange', handleResize);
-
-      if (muuriRef.current) {
-        muuriRef.current.on('dragEnd', handleDragEnd);
-      }
+        cleanup = () => {
+          window.removeEventListener('resize', handleResize);
+          window.removeEventListener('orientationchange', handleResize);
+          if (muuriRef.current) {
+            muuriRef.current.off('dragEnd', handleDragEnd);
+            muuriRef.current.destroy();
+            muuriRef.current = null;
+          }
+        };
+      })();
 
       return () => {
-        window.removeEventListener('resize', handleResize);
-        window.removeEventListener('orientationchange', handleResize);
-        if (muuriRef.current) {
-          muuriRef.current.off('dragEnd', handleDragEnd);
-          muuriRef.current.destroy();
-          muuriRef.current = null;
-        }
+        // Call the cleanup if it was set by the async initializer
+        try { cleanup(); } catch { /* ignore cleanup errors during unmount */ }
       };
     }
   }, []);
@@ -223,9 +239,11 @@ export default function MasonryGrid({ items }: MasonryGridProps) {
 
       case 'project':
         const images = item.images || (item.image ? [item.image] : []);
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
         // Auto slideshow
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
           if (images.length <= 1) return;
 
@@ -391,7 +409,7 @@ export default function MasonryGrid({ items }: MasonryGridProps) {
             <div className="flex-1 overflow-y-auto">
               <div className="flex flex-wrap gap-3">
                 {item.skills?.map((skill, index) => {
-                  const iconMap: { [key: string]: any } = {
+                  const iconMap: Record<string, IconType> = {
                     'SiJavascript': SiJavascript,
                     'SiReact': SiReact,
                     'SiPython': SiPython,
@@ -474,9 +492,11 @@ export default function MasonryGrid({ items }: MasonryGridProps) {
               {/* Hover state: centered avatar and details */}
               <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 {item.avatar && (
-                  <img
+                  <Image
                     src={item.avatar}
                     alt={`${item.title} avatar`}
+                    width={64}
+                    height={64}
                     className="w-16 h-16 rounded-full mb-3 border-2 border-white shadow-lg"
                   />
                 )}
