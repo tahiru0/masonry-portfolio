@@ -14,7 +14,7 @@ A modern, interactive portfolio website built with Next.js, featuring a beautifu
 ## 🚀 Tech Stack
 
 - **Framework**: Next.js 15.5.4
-- **Frontend**: React 19.1.0 với TypeScript 5
+- **Frontend**: React 19.1.0 with TypeScript 5
 - **Styling**: Tailwind CSS 4
 - **Layout**: Muuri + React Masonry CSS (masonry layout)
 - **Icons**: React Icons
@@ -34,10 +34,10 @@ cd masonry-portfolio
 npm install
 ```
 
-3. **Tùy chỉnh thông tin cá nhân** (quan trọng):
-   - Sửa `data/portfolio.json` để điền thông tin cá nhân
-   - Thay file `public/cv.pdf` bằng CV thật của bạn
-   - Cập nhật username GitHub trong `src/app/api/github/route.ts`
+3. **Customize Personal Information** (important):
+   - Edit `data/portfolio.json` to fill in personal information
+   - Replace `public/cv.pdf` with your actual CV
+   - Update GitHub username in `src/app/api/github/route.ts`
 
 4. Run the development server:
 ```bash
@@ -66,26 +66,26 @@ masonry-portfolio/
 
 ## 🎨 Customization
 
-### Điền Thông Tin Cá Nhân
+### Fill in Personal Information
 
-Để tùy chỉnh thông tin cá nhân trong portfolio, bạn cần sửa file `data/portfolio.json`:
+To customize personal information in the portfolio, you need to edit the `data/portfolio.json` file:
 
-#### 1. Thông Tin Cá Nhân (Avatar)
+#### 1. Personal Information (Avatar)
 ```json
 {
   "avatar": {
     "id": "avatar",
     "type": "avatar",
-    "image": "https://picsum.photos/400/400?random=999", // Thay bằng ảnh đại diện của bạn
-    "title": "Tên của bạn", // Thay bằng tên thật
-    "description": "Mô tả ngắn về bản thân", // Thay bằng mô tả về bạn
-    "location": "Thành phố, Quốc gia", // Thay bằng địa chỉ của bạn
-    "role": "Chức vụ/Vị trí hiện tại" // Thay bằng vai trò của bạn
+    "image": "https://picsum.photos/400/400?random=999", // Replace with your profile picture
+    "title": "Your Name", // Replace with your real name
+    "description": "Short description about yourself", // Replace with description about you
+    "location": "City, Country", // Replace with your address
+    "role": "Current Position/Role" // Replace with your role
   }
 }
 ```
 
-#### 2. Thông Tin Liên Hệ
+#### 2. Contact Information
 ```json
 {
   "contactForm": {
@@ -94,44 +94,44 @@ masonry-portfolio/
     "icon": "MdMail",
     "title": "Get In Touch",
     "description": "Send me a message",
-    "email": "email@cuaban.com" // Thay bằng email thật của bạn
+    "email": "your@email.com" // Replace with your real email
   }
 }
 ```
 
-#### 3. Thông Tin GitHub
-Sửa file `src/app/api/github/route.ts`:
+#### 3. GitHub Information
+Edit file `src/app/api/github/route.ts`:
 ```typescript
 const response = await fetch('https://api.github.com/users/tahiru0', {
-  // Thay 'tahiru0' bằng username GitHub thật của bạn
+  // Replace 'tahiru0' with your actual GitHub username
 });
 ```
 
-#### 4. Mạng Xã Hội
+#### 4. Social Media
 ```json
 {
   "socialMedia": {
     "linkedin": {
-      "username": "Tên thật trên LinkedIn", // Thay bằng tên LinkedIn
-      "link": "https://linkedin.com/in/username" // Thay bằng link LinkedIn thật
+      "username": "Your LinkedIn Name", // Replace with your LinkedIn name
+      "link": "https://linkedin.com/in/username" // Replace with your actual LinkedIn link
     },
     "twitter": {
-      "username": "@username", // Thay bằng username Twitter/X
-      "link": "https://x.com/username" // Thay bằng link Twitter/X thật
+      "username": "@username", // Replace with your Twitter/X username
+      "link": "https://x.com/username" // Replace with your actual Twitter/X link
     }
   }
 }
 ```
 
-#### 5. Thay File CV
-1. Chuẩn bị file CV của bạn (định dạng PDF)
-2. Đặt tên file là `cv.pdf`
-3. Thay thế file `public/cv.pdf` bằng file CV thật của bạn
-4. File sẽ tự động được link trong portfolio
+#### 5. Replace CV File
+1. Prepare your CV file (PDF format)
+2. Name the file `cv.pdf`
+3. Replace the `public/cv.pdf` file with your actual CV
+4. The file will be automatically linked in the portfolio
 
-### Thêm Dự Án Mới
+### Add New Projects
 
-Để thêm dự án mới, sửa phần `projects` trong `data/portfolio.json`:
+To add new projects, edit the `projects` section in `data/portfolio.json`:
 
 ```json
 {
@@ -140,23 +140,23 @@ const response = await fetch('https://api.github.com/users/tahiru0', {
       "id": "4",
       "type": "project",
       "images": [
-        "https://picsum.photos/400/300?random=21", // Thay bằng ảnh dự án thật
+        "https://picsum.photos/400/300?random=21", // Replace with actual project images
         "https://picsum.photos/400/300?random=22"
       ],
       "icon": "MdSmartphone",
-      "title": "Tên Dự Án",
-      "description": "Mô tả chi tiết về dự án",
-      "tags": ["Công nghệ 1", "Công nghệ 2"],
-      "liveUrl": "https://link-demo.vercel.app", // Link demo
-      "sourceUrl": "https://github.com/username/repo" // Link source code
+      "title": "Project Name",
+      "description": "Detailed project description",
+      "tags": ["Technology 1", "Technology 2"],
+      "liveUrl": "https://demo-link.vercel.app", // Demo link
+      "sourceUrl": "https://github.com/username/repo" // Source code link
     }
   ]
 }
 ```
 
-### Kỹ Năng & Chứng Chỉ
+### Skills & Certifications
 
-Sửa phần `skills` và `certifications` trong `data/portfolio.json` để cập nhật kỹ năng và chứng chỉ của bạn.
+Edit the `skills` and `certifications` sections in `data/portfolio.json` to update your skills and certifications.
 
 ### Styling
 
@@ -166,7 +166,7 @@ The project uses Tailwind CSS for styling. Main styles are in:
 
 ## 📦 Dependencies & Libraries
 
-Dự án sử dụng các thư viện sau:
+The project uses the following libraries:
 
 ### Production Dependencies
 - **Next.js 15.5.4**: React framework for production
@@ -174,7 +174,7 @@ Dự án sử dụng các thư viện sau:
 - **React DOM 19.1.0**: React rendering library
 - **TypeScript 5**: Type-safe JavaScript
 - **Tailwind CSS 4**: Utility-first CSS framework
-- **React Icons 5.5.0**: Icon library với 20+ icon packs
+- **React Icons 5.5.0**: Icon library with 20+ icon packs
 - **Muuri 0.9.5**: JavaScript library for masonry layout
 - **Muuri React 3.1.7**: React wrapper for Muuri
 - **React Masonry CSS 1.0.16**: Alternative masonry layout
@@ -209,10 +209,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## 👨‍💻 Author
-
-**Duan Can Han**
-- Portfolio: [Portfolio URL của bạn]
-- LinkedIn: [LinkedIn của bạn]
-- GitHub: [@tahiru0](https://github.com/tahiru0)
-- Email: [Email của bạn]
